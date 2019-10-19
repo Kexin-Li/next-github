@@ -1,11 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 async function fetchUserFollowers(user) {
-  const res = await fetch(`https://api.github.com/users/${user}/followers`, {
-    headers: {
-      Authorization: 'token 3da812e2391fab43fa80c0c91399a7ceee86b93a'
-    }
-  });
+  const res = await fetch(`https://api.github.com/users/${user}/followers`);
   const followers = await res.json();
   if (!followers) return [];
   const followerUsernames = followers.map(f => f.login);
@@ -13,11 +9,7 @@ async function fetchUserFollowers(user) {
 }
 
 async function fetchUser(username) {
-  const res = await fetch(`https://api.github.com/users/${username}`, {
-    headers: {
-      Authorization: 'token 3da812e2391fab43fa80c0c91399a7ceee86b93a'
-    }
-  });
+  const res = await fetch(`https://api.github.com/users/${username}`);
   const userInfo = await res.json();
   return userInfo;
 }
